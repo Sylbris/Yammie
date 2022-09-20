@@ -1,7 +1,28 @@
 import mongoose from "mongoose";
 
 /**
- * A simple schema to represent the orders.
+ * @swagger
+ * definitions:
+ *   Order:
+ *     type: object
+ *     required:
+ *       - id
+ *       - customerName
+ *       - amount
+ *       - address
+ *     properties:
+ *       id:
+ *         type: string
+ *       customerName:
+ *         type: string
+ *       amount:
+ *         type: number
+ *       address:
+ *         type: string
+ *   Orders:
+ *     type: object
+ *     items:
+ *       $ref: '#/definitions/Order'
  */
 const orderSchema = mongoose.Schema({
     customerName: String,

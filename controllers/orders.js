@@ -4,10 +4,26 @@ import moment from 'moment'
 import Order from '../models/order.js'
 
 /**
- * post request to db
- * 
- * @param {*} req 
- * @param {*} res 
+ * @swagger
+ * /orders:
+ *   post:
+ *     description: Create a new order
+ *     tags:
+ *       - orders
+ *     produces:
+ *       - application/json
+ *     parameters:
+ *       - name: order
+ *         description: Order object
+ *         in: body
+ *         required: true
+ *         schema:
+ *           $ref: '#/definitions/Order'
+ *     responses:
+ *       200:
+ *         description: new order
+ *         schema:
+ *           $ref: '#/definitions/Order'
  */
 export const createOrder = async(req, res) => {
     // Load the request parameters.
@@ -34,12 +50,19 @@ export const createOrder = async(req, res) => {
 }
 
 /**
- * Fetches all the orders in the collection,
- * allow from query parameter, if one wishes to pull
- * all orders from a certain date.
- * 
- * @param {*} req 
- * @param {*} res 
+ * @swagger
+ * /orders:
+ *   get:
+ *     description: Retrieve the full list of orders
+ *     tags:
+ *       - orders
+ *     produces:
+ *       - application/json
+ *     responses:
+ *       200:
+ *         description: orders
+ *         schema:
+ *           $ref: '#/definitions/Orders'
  */
 export const getOrders = async(req, res) => {
     const from = req.query.from;

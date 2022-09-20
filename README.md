@@ -9,6 +9,18 @@ A new restaurant.
 $ git clone https://github.com/Sylbris/Yammie.git
 
 ```
+
+## Swagger documentation - HTML and JSON
+* Swagger UI:
+ 
+ 
+     http://localhost:3000/api-docs
+
+* JSON: 
+
+
+     http://localhost:5000/api-docs/json
+     
 ## Structure
 ```
 Yammie 
@@ -30,7 +42,10 @@ Yammie
  ┗ server.js 
 
 ```
-## API
+## REST API Endpoints
+
+* *GET* http://localhost:5000/orders
+* *POST* http://localhost:5000/orders
 
 ## Testing
 ```
