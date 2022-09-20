@@ -4,10 +4,10 @@ import mongoose from "mongoose";
  * A simple schema to represent the orders.
  */
 const orderSchema = mongoose.Schema({
-    name: String,
+    customerName: String,
     amount: String,
     address: String,
-    payment: String,
+    paymentType: String,
     items: [Object],
     dateOfOrder: {
         type: Date,

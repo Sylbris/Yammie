@@ -11,10 +11,17 @@ import Order from '../models/order.js'
  */
 export const createOrder = async(req, res) => {
     // Load the request parameters.
-    const { name, amount, address, payment, items } = req.body;
+    const { customerName, amount, address, paymentType, items } = req.body;
+
+    // Check to see we're not missing a parameter.
+    if( !customerName || !amount || !address || !paymentType || !items){
+        res.status(400).json({ message: "missing parameter"});
+    }
+
+    
 
     // Create a new Schema, with the parameters.
-    const newOrder = new Order( { name, amount, address, payment, items });
+    const newOrder = new Order( { customerName, amount, address, paymentType, items });
 
     try {
         await newOrder.save();
@@ -35,14 +42,18 @@ export const createOrder = async(req, res) => {
  * @param {*} res 
  */
 export const getOrders = async(req, res) => {
+    const from = req.query.from;
+
     try {
-        // Get the date from which you wish to view the orders.
-        const from = req.query.from;
 
         if(from){
+            // Parse date
+            const dateParsed = moment(from);
+            dateParsed.format();
+
             // get all records 
-            const extReadings = await Order.find({ "dateOfOrder": { $gte: from } });
-            res.status(200).json(extReadings);
+            const order = await Order.find({ "dateOfOrder": { $gte: dateParsed } });
+            res.status(200).json(order);
         }
         else {
             const order = await Order.find();
