@@ -5,23 +5,21 @@ import Order from "../models/order.js";
 
 /**
  * @swagger
- * /orders:
+ * /api/v1/orders:
  *   post:
  *     description: Create a new order
  *     tags:
  *       - orders
  *     produces:
  *       - application/json
- *     parameters:
- *       - name: order
- *         description: Order object
- *         in: body
- *         required: true
- *         schema:
- *           $ref: '#/definitions/Order'
+ *     requestBody:
+ *         content:
+ *            application/x-www-form-urlencoded:
+ *               schema:
+ *                 $ref: '#/definitions/Order'
  *     responses:
- *       200:
- *         description: new order
+ *       201:
+ *         description: successful order
  *         schema:
  *           $ref: '#/definitions/Order'
  *       400:
@@ -63,7 +61,7 @@ export const createOrder = async (req, res) => {
 
 /**
  * @swagger
- * /orders:
+ * /api/v1/orders:
  *   get:
  *     description: Retrieve the full list of orders
  *     tags:

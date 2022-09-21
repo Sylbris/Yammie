@@ -4,7 +4,15 @@
 This project represents a backend API for Yammie,
 A new restaurant.
 
+https://yammie-api.onrender.com
+
+
 ## Installation & Run
+Please note I used mongoDB atlas as my database,
+So I have included a sample .env file where you 
+can add a username and password as you wish.
+After that change the name to .env.
+
 Clone the repository
 ```
 $ git clone https://github.com/Sylbris/Yammie.git
@@ -31,12 +39,12 @@ Server should be up and running.
 * Swagger UI:
  
  
-     http://localhost:3000/api-docs
+     https://yammie-api.onrender.com/api/v1
 
 * JSON: 
 
 
-     http://localhost:5000/api-docs/json
+     https://yammie-api.onrender.com/api/v1/json
      
 ## Structure
 ```
@@ -61,8 +69,8 @@ Yammie
 ```
 ## REST API Endpoints
 
-* *GET* http://localhost:5000/orders
-* *POST* http://localhost:5000/orders
+* *GET* https://yammie-api.onrender.com/api/v1/orders
+* *POST* https://yammie-api.onrender.com/api/v1/orders
 
 ## Testing
 ```
