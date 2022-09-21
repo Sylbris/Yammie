@@ -1,10 +1,9 @@
-import express from 'express'
-import swaggerUi from 'swagger-ui-express';
-import { swaggerSpec, specs } from '../controllers/swagger.js' 
+import express from "express";
+import swaggerUi from "swagger-ui-express";
+import { swaggerSpec, specs } from "../controllers/swagger.js";
 
 const router = express.Router();
 
-// Get
 router.get("/json", swaggerSpec);
 
 router.use("/", swaggerUi.serve, swaggerUi.setup(specs));

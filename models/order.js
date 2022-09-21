@@ -26,7 +26,7 @@ import mongoose from "mongoose";
  *        amount: 85
  *        address: Zabotinsky 85, Ramat-gan
  *        paymentType: CARD
- *        items: 
+ *        items:
  *           - itemID: 1
  *             itemName: Pizza
  *             quantity: 4
@@ -39,17 +39,17 @@ import mongoose from "mongoose";
  *       $ref: '#/definitions/Order'
  */
 const orderSchema = mongoose.Schema({
-    customerName: String,
-    amount: Number,
-    address: String,
-    paymentType: String,
-    items: [Object],
-    dateOfOrder: {
-        type: Date,
-        default: new Date(),
-    },
-})
+  customerName: String,
+  amount: Number,
+  address: String,
+  paymentType: String,
+  items: [Object],
+  dateOfOrder: {
+    type: Date,
+    default: new Date(),
+  },
+});
 
-var Order = mongoose.model('Order', orderSchema);
+var Order = mongoose.model("Order", orderSchema);
 
 export default Order;
