@@ -57,11 +57,26 @@ export const createOrder = async(req, res) => {
  *       - orders
  *     produces:
  *       - application/json
+ *     parameters:
+ *       - name: from
+ *         in: query
+ *         type: string
+ *         format: date
+ *         description: the date from which you wish to view the orders
+ *         examples: 
+ *            YYYY-MM-DD:
+ *             value:
+ *              /orders?from=2022-09-20
+ *            YYYY-MM-DD'T'HH:MM:SS:
+ *             value:
+ *              /orders?from=2022-09-20T09:21:05.910Z
  *     responses:
  *       200:
- *         description: orders
+ *         description: successfully added the order
  *         schema:
  *           $ref: '#/definitions/Orders'
+ *       400:
+ *         description: bad date format
  */
 export const getOrders = async(req, res) => {
     const from = req.query.from;

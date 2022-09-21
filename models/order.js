@@ -6,19 +6,30 @@ import mongoose from "mongoose";
  *   Order:
  *     type: object
  *     required:
- *       - id
  *       - customerName
  *       - amount
  *       - address
+ *       - items
  *     properties:
- *       id:
- *         type: string
  *       customerName:
  *         type: string
  *       amount:
  *         type: number
  *       address:
  *         type: string
+ *       items:
+ *         type: array
+ *     example:
+ *        customerName: James Bond
+ *        amount: 85
+ *        address: Zabotinsky 85, Ramat-gan
+ *        items: 
+ *           - itemID: 1
+ *             itemName: Pizza
+ *             quantity: 4
+ *           - itemID: 4
+ *             itemName: Hamburger
+ *             quantity: 2
  *   Orders:
  *     type: object
  *     items:
