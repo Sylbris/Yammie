@@ -26,7 +26,7 @@ import mongoose from "mongoose";
  */
 const orderSchema = mongoose.Schema({
     customerName: String,
-    amount: String,
+    amount: Number,
     address: String,
     paymentType: String,
     items: [Object],

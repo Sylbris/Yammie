@@ -41,7 +41,7 @@ describe("GET /orders", () => {
 
 let mockObject = {
         "customerName": "James Bond",
-        "amount": "96 NIS",
+        "amount": 96,
         "address": "Oranim 3, Givaat-shmuel",
         "paymentType": "CREDIT",
         "items": [
@@ -51,6 +51,47 @@ let mockObject = {
                 "Quantity": 5
             }
         ],
+}
+
+let mockObjectWithoutReqField = {
+    "amount": 96,
+    "address": "Oranim 3, Givaat-shmuel",
+    "paymentType": "CREDIT",
+    "items": [
+        {
+            "itemID": 1,
+            "itemName": "Large Pizza",
+            "Quantity": 5
+        }
+    ],
+}
+
+let mockObjectWithNullField = {
+    "customerName": "",
+    "amount": 96,
+    "address": "Oranim 3, Givaat-shmuel",
+    "paymentType": "CREDIT",
+    "items": [
+        {
+            "itemID": 1,
+            "itemName": "Large Pizza",
+            "Quantity": 5
+        }
+    ],
+}
+
+let mockObjectInvalidAmount = {
+    "customerName": "",
+    "amount": -2,
+    "address": "Oranim 3, Givaat-shmuel",
+    "paymentType": "CREDIT",
+    "items": [
+        {
+            "itemID": 1,
+            "itemName": "Large Pizza",
+            "Quantity": 5
+        }
+    ],
 }
 
 // Testing all post requests.
@@ -67,6 +108,65 @@ describe("POST /orders", () => {
                 expect(res.body._id).toBeTruthy();
                 done();
             });
+        })
+
+        //test null
+        test("null", (done) => {
+            const response = request(app).post("/orders")
+            .send(null)
+            .expect(400).then(res => {
+                done();
+            });
+            
+        })
+
+        //test undefined
+        test("undefined", (done) => {
+            const response = request(app).post("/orders")
+            .send(undefined)
+            .expect(400).then(res => {
+                done();
+            });
+            
+        })
+        //test empty object
+        test("empty object", (done) => {
+            const response = request(app).post("/orders")
+            .send({})
+            .expect(400).then(res => {
+                done();
+            });
+            
+        })
+
+        //test object with missing field
+        test("missing field", (done) => {
+            const response = request(app).post("/orders")
+            .send(mockObjectWithoutReqField)
+            .expect(400).then(res => {
+                done();
+            });
+            
+        })
+
+        //test object with missing field
+        test("mockObjectWithNullField", (done) => {
+            const response = request(app).post("/orders")
+            .send(mockObjectWithNullField)
+            .expect(400).then(res => {
+                done();
+            });
+            
+        })
+
+        //test object with invalid amount
+        test("mockObjectInvalidAmount", (done) => {
+            const response = request(app).post("/orders")
+            .send(mockObjectInvalidAmount)
+            .expect(400).then(res => {
+                done();
+            });
+            
         })
 
     })

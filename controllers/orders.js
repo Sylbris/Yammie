@@ -30,22 +30,21 @@ export const createOrder = async(req, res) => {
     const { customerName, amount, address, paymentType, items } = req.body;
 
     // Check to see we're not missing a parameter.
-    if( !customerName || !amount || !address || !paymentType || !items){
+    if( !customerName || !amount || !address || !paymentType || !items || amount < 0){
         res.status(400).json({ message: "missing parameter"});
     }
+    else {
+        // Create a new Schema, with the parameters.
+        const newOrder = new Order( { customerName, amount, address, paymentType, items });
 
-    
+        try {
+            await newOrder.save();
 
-    // Create a new Schema, with the parameters.
-    const newOrder = new Order( { customerName, amount, address, paymentType, items });
-
-    try {
-        await newOrder.save();
-
-        res.status(200).json(newOrder);
-    }
-    catch(error){
-        res.status(400).json({ message: error.message});
+            res.status(200).json(newOrder);
+        }
+        catch(error){
+            res.status(400).json({ message: error.message});
+        }
     }
 }
 
