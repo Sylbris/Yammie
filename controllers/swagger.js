@@ -14,6 +14,9 @@ const options = {
       {
         url: "http://localhost:5000",
       },
+      {
+        url: "https://yammie-api.onrender.com",
+      }
     ],
   },
   apis: ["./controllers/orders.js", "./models/order.js"],
