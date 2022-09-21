@@ -16,7 +16,7 @@ describe("GET /orders", () => {
         //return all entries
 
         test("getting 200 response", async () => {
-            const response = await request(app).get("/orders");
+            const response = await request(app).get("/api/v1/orders");
             expect(response.statusCode).toBe(200);
         })
 
@@ -27,25 +27,25 @@ describe("GET /orders", () => {
         //send a request to the database.
         //return all entries from given date.
         test("getting 200 response", async () => {
-            const response = await request(app).get("/orders?from=2022-05-19");
+            const response = await request(app).get("/api/v1/orders?from=2022-05-19");
             expect(response.statusCode).toBe(200);
         })
 
         //different date format.
         test("getting 200 response", async () => {
-            const response = await request(app).get("/orders?from=2022-09-19T09:48:46.267Z");
+            const response = await request(app).get("/api/v1/orders?from=2022-09-19T09:48:46.267Z");
             expect(response.statusCode).toBe(200);
         })
 
         //bad format
         test("bad format", async () => {
-                    const response = await request(app).get("/orders?from=20-09-2022");
+                    const response = await request(app).get("/api/v1/orders?from=20-09-2022");
                     expect(response.statusCode).toBe(400);
                 })
 
         //empty parameter
         test("empty parameter", async () => {
-            const response = await request(app).get("/orders?from=");
+            const response = await request(app).get("/api/v1/orders?from=");
             expect(response.statusCode).toBe(200);
         })
     })
@@ -113,9 +113,9 @@ describe("POST /orders", () => {
         
         //post request with mock data.
         test("getting 200 response", (done) => {
-            const response = request(app).post("/orders")
+            const response = request(app).post("/api/v1/orders")
             .send(mockObject)
-            .expect(200)
+            .expect(201)
             .then(res => {
                 expect(res.body._id).toBeTruthy();
                 done();
@@ -124,7 +124,7 @@ describe("POST /orders", () => {
 
         //test null
         test("null", (done) => {
-            const response = request(app).post("/orders")
+            const response = request(app).post("/api/v1/orders")
             .send(null)
             .expect(400).then(res => {
                 done();
@@ -134,7 +134,7 @@ describe("POST /orders", () => {
 
         //test undefined
         test("undefined", (done) => {
-            const response = request(app).post("/orders")
+            const response = request(app).post("/api/v1/orders")
             .send(undefined)
             .expect(400).then(res => {
                 done();
@@ -143,7 +143,7 @@ describe("POST /orders", () => {
         })
         //test empty object
         test("empty object", (done) => {
-            const response = request(app).post("/orders")
+            const response = request(app).post("/api/v1/orders")
             .send({})
             .expect(400).then(res => {
                 done();
@@ -153,7 +153,7 @@ describe("POST /orders", () => {
 
         //test object with missing field
         test("missing field", (done) => {
-            const response = request(app).post("/orders")
+            const response = request(app).post("/api/v1/orders")
             .send(mockObjectWithoutReqField)
             .expect(400).then(res => {
                 done();
@@ -163,7 +163,7 @@ describe("POST /orders", () => {
 
         //test object with missing field
         test("mockObjectWithNullField", (done) => {
-            const response = request(app).post("/orders")
+            const response = request(app).post("/api/v1/orders")
             .send(mockObjectWithNullField)
             .expect(400).then(res => {
                 done();
@@ -173,7 +173,7 @@ describe("POST /orders", () => {
 
         //test object with invalid amount
         test("mockObjectInvalidAmount", (done) => {
-            const response = request(app).post("/orders")
+            const response = request(app).post("/api/v1/orders")
             .send(mockObjectInvalidAmount)
             .expect(400).then(res => {
                 done();
