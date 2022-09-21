@@ -36,6 +36,18 @@ describe("GET /orders", () => {
             const response = await request(app).get("/orders?from=2022-09-19T09:48:46.267Z");
             expect(response.statusCode).toBe(200);
         })
+
+        //bad format
+        test("bad format", async () => {
+                    const response = await request(app).get("/orders?from=20-09-2022");
+                    expect(response.statusCode).toBe(400);
+                })
+
+        //empty parameter
+        test("empty parameter", async () => {
+            const response = await request(app).get("/orders?from=");
+            expect(response.statusCode).toBe(200);
+        })
     })
 })
 
