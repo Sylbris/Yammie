@@ -51,15 +51,17 @@ Server should be up and running.
 Yammie 
  ┣ controllers
  ┃ ┗ orders.js
+ ┃ ┗ swagger.js
  ┣ models
  ┃ ┗ order.js
  ┣ routes
  ┃ ┗ orders.js
+ ┃ ┗ swagger.js
  ┣ tests
  ┃ ┣ controllers
  ┃ ┃ ┗ orders.spec.js
  ┃ ┗ db.js 
- ┣ .env
+ ┣ .env.example
  ┣ app.js
  ┣ package-lock.json
  ┣ package.json
