@@ -24,6 +24,8 @@ import Order from '../models/order.js'
  *         description: new order
  *         schema:
  *           $ref: '#/definitions/Order'
+ *       400:
+ *         description: missing body
  */
 export const createOrder = async(req, res) => {
     // Load the request parameters.
