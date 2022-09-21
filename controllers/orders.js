@@ -84,15 +84,22 @@ export const getOrders = async(req, res) => {
     const from = req.query.from;
 
     try {
-
         if(from){
             // Parse date
-            const dateParsed = moment(from);
+            const date = new Date(from);
+            const dateParsed = moment(date, true);
             dateParsed.format();
 
-            // get all records 
-            const order = await Order.find({ "dateOfOrder": { $gte: dateParsed } });
-            res.status(200).json(order);
+            if(dateParsed.isValid()){
+
+                // get all records 
+                const order = await Order.find({ "dateOfOrder": { $gte: dateParsed } });
+                res.status(200).json(order);
+            }
+            else {
+                res.status(400).json({ message: "bad date"});
+            }
+            
         }
         else {
             const order = await Order.find();

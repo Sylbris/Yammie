@@ -5,10 +5,27 @@ This project represents a backend API for Yammie,
 A new restaurant.
 
 ## Installation & Run
+Clone the repository
 ```
 $ git clone https://github.com/Sylbris/Yammie.git
-
 ```
+
+Build docker
+```
+$ docker build ./YAMMIE/ -t yammieapi:latest
+```
+
+Run docker 
+```
+$ docker run --name yammieapi -p 5000:5000/tcp -d yammieapi
+```
+
+Make sure container is up
+```
+$ docker ps -a
+```
+
+Server should be up and running.
 
 ## Swagger documentation - HTML and JSON
 * Swagger UI:

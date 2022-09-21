@@ -17,12 +17,15 @@ import mongoose from "mongoose";
  *         type: number
  *       address:
  *         type: string
+ *       paymentType:
+ *         type: string
  *       items:
  *         type: array
  *     example:
  *        customerName: James Bond
  *        amount: 85
  *        address: Zabotinsky 85, Ramat-gan
+ *        paymentType: CARD
  *        items: 
  *           - itemID: 1
  *             itemName: Pizza

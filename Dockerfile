@@ -1,10 +1,12 @@
-FROM node:17
+FROM node:17 as base
 
 # Working Dir
 WORKDIR /usr/src/app
 
 # Copy Package
 COPY package.json npm-shrinkwrap.json ./
+
+FROM base as prod
 
 # Install Prettier
 RUN npm install prettier -g
@@ -19,3 +21,4 @@ COPY . .
 EXPOSE 5000
 
 CMD ["npm" , "start"]
+
